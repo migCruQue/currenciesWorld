@@ -30,49 +30,44 @@ traditionalCurrenciesRates.forEach( currency => {
 
 
 // SORTING THE ARRAY OF TRADITIONAL CURRENCIES RATES WITH .sort() methods 
-traditionalCurrenciesRates.sort(function (a, b) {
+let tradCurrSorted = traditionalCurrenciesRates.sort(function (a, b) {
   return b.rate - a.rate;
 });
 
 
-traditionalCurrenciesRates.splice(0, 19);
+let twentyfiveElements = tradCurrSorted.slice(0, 25);
 
 export default function Home() {
+
+
   return (
     <Container>
-      <h1 className="main-heading">supportedCurrencies {supportedCurrencies.length}</h1>
-      <h1 className="main-heading">traditionalCurrencies {traditionalCurrencies.length}</h1>
-      <h1 className="main-heading">cryptoCurrencies {cryptoCurrencies.length}</h1>
-      <h1 className="main-heading">latestRates {Object.keys(latestRates.rates).length}</h1>
+      <h1 className="main-heading">the 25 most valuable currencies in the world</h1>
+      <h2 className="main-heading">API INFO: DATE AND TIME: {latestRates.date} BASE: {latestRates.base}</h2>
       <Table striped bordered hover size="sm">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Username</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td colSpan={2}>Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</Table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Currency Name</th>
+              <th>Country</th>
+              <th>Currency Code</th>
+              <th>Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            {twentyfiveElements.map((element, index) => {
+              return (
+                <tr key={index + 1}>
+                <td>{index + 1}</td>
+                <td>{element.currencyName}</td>
+                <td>{element.countryName}</td>
+                <td>{element.currencyCode}</td>
+                <td>{element.rate}</td>
+              </tr>
+              );
+            })}
+          </tbody>
+        </Table>
     </Container>
   );
   
