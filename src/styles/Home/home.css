@@ -1,0 +1,18 @@
+h1.main-heading {
+  font-size: 25px;
+  color: red;
+  background-color: yellow;
+}
+
+h2.subheading {
+  font-size: 20px;
+  color: purple;
+  background-color: green;
+}
+
+img.flagIcon {
+  width: 10%;
+  height: 10%;
+  margin-right: 1rem;
+}
+/*# sourceMappingURL=home.css.map */
