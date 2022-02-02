@@ -60,7 +60,10 @@ export default function Home() {
                 <tr key={index + 1}>
                 <td>{index + 1}</td>
                 <td>{element.currencyName}</td>
-                <td>{element.countryName}</td>
+                <td>
+                  <img className="flagIcon roundedCircle" src={element.icon} alt={element.icon} /> 
+                  {element.countryName}
+                </td>
                 <td>{element.currencyCode}</td>
                 <td>{element.rate}</td>
               </tr>
