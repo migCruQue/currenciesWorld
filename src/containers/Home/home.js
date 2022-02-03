@@ -24,7 +24,7 @@ let traditionalCurrenciesRates = traditionalCurrencies; // to assign this array 
 traditionalCurrenciesRates.forEach( currency => {
   if (arrayRatesKeys.includes(currency.currencyCode)){
     let rate = rates[currency.currencyCode];
-    currency.rate = Number(rate); //value to be expressed in number type.
+    currency.rate = (Number(rate)% 1 !== 0) ?  Number(rate).toFixed(2) : Number(rate); //value to be expressed in number type and fixed it to 2 decimals.
   }
 });
 
@@ -42,16 +42,17 @@ export default function Home() {
 
   return (
     <Container>
-      <h1 className="main-heading">the 25 most valuable currencies in the world</h1>
+      {/* <h1 className="main-heading">the 25 most valuable currencies in the world</h1> */}
       <h2 className="main-heading">API INFO: DATE AND TIME: {latestRates.date} BASE: {latestRates.base}</h2>
-      <Table striped bordered hover size="sm">
+      <Table className="table table-success" striped bordered hover>
+          <caption>the 25 most valuable currencies in the world</caption>
           <thead>
             <tr>
-              <th>#</th>
-              <th>Currency Name</th>
-              <th>Country</th>
-              <th>Currency Code</th>
-              <th>Rate</th>
+              <th>RANK</th>
+              <th>CURRENCY NAME</th>
+              <th>COUNTRY</th>
+              <th>CODE</th>
+              <th>RATE</th>
             </tr>
           </thead>
           <tbody>
