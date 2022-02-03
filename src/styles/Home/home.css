@@ -10,9 +10,71 @@ h2.subheading {
   background-color: green;
 }
 
+table.table {
+  text-align: center;
+  table-layout: fixed;
+  border: 3px solid purple;
+}
+
+thead th:nth-child(1) {
+  width: 10%;
+}
+
+thead th:nth-child(2) {
+  width: 30%;
+}
+
+thead th:nth-child(3) {
+  width: 20%;
+}
+
+thead th:nth-child(4) {
+  width: 12%;
+}
+
+thead th:nth-child(5) {
+  width: 21%;
+}
+
+thead th {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #084fa7;
+  background-color: rgba(255, 0, 0, 0.659) !important;
+}
+
+th {
+  letter-spacing: 2px;
+}
+
+td {
+  letter-spacing: 1px;
+}
+
+tbody td {
+  text-align: center;
+}
+
+tbody tr td:nth-child(3) {
+  text-align: left;
+}
+
+/* caption */
+caption {
+  padding: 20px;
+  font-style: italic;
+  font-size: 2rem;
+  caption-side: top;
+  color: white !important;
+  background-color: cadetblue;
+  margin: 4rem auto;
+  text-align: right;
+  letter-spacing: 1px;
+}
+
 img.flagIcon {
   width: 10%;
   height: 10%;
-  margin-right: 1rem;
+  margin: auto 1.5rem;
 }
 /*# sourceMappingURL=home.css.map */
