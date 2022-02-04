@@ -8,7 +8,7 @@ import { supportedCurrencies, latestRates } from "../../config/dataTesting";
 // ARRAY OF OBJECTS WITH TRADITIONAL CURRENCIES currency.countryName !==  "Global"
 let traditionalCurrencies = supportedCurrencies.filter(currency => currency.countryName !==  "Global");
 // ARRAY OF OBJECTS WITH CRYPTO CURRENCIES currency.countryCode ===  "Crypto"
-let cryptoCurrencies = supportedCurrencies.filter(currency => currency.countryCode ===  "Crypto");
+// let cryptoCurrencies = supportedCurrencies.filter(currency => currency.countryCode ===  "Crypto");
 // ARRAY OF OBJECTS WITH METAL CURRENCIES currency.countryCode ===  "Metal", I'm not planning to use it as the free subscription doesnt
 // provide much information.
 // let metalCurrencies = supportedCurrencies.filter(currency => currency.countryCode ===  "Metal");
