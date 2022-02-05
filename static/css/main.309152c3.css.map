@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/main.309152c3.css","mappings":"AAAA,gBAGE,sBADA,UADA,cAEA,CAGF,cAGE,uBADA,aADA,cAEA","sources":["styles/Home/home.scss"],"sourcesContent":["h1.main-heading {\n  font-size: 25px;\n  color: red;\n  background-color: yellow;\n}\n\nh2.subheading {\n  font-size: 20px;\n  color: purple;\n  background-color: green;\n}\n"],"names":[],"sourceRoot":""}
