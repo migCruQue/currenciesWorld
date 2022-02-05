@@ -1,15 +1,3 @@
-h1.main-heading {
-  font-size: 25px;
-  color: red;
-  background-color: yellow;
-}
-
-h2.subheading {
-  font-size: 20px;
-  color: purple;
-  background-color: green;
-}
-
 table.table {
   text-align: center;
   table-layout: fixed;
@@ -77,4 +65,4 @@ img.flagIcon {
   height: 10%;
   margin: auto 1.5rem;
 }
-/*# sourceMappingURL=home.css.map */
+/*# sourceMappingURL=CurrenciesTable.css.map */

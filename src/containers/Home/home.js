@@ -1,8 +1,10 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
-import Table from 'react-bootstrap/Table';
-import "../../styles/Home/home.scss";
+// STYLE
+import "./home.scss";
 import { supportedCurrencies, latestRates } from "../../config/dataTesting";
+//COMPONENTS
+import CurrenciesTable from "../Home/CurrenciesTable/CurrenciesTable";
 
 
 // ARRAY OF OBJECTS WITH TRADITIONAL CURRENCIES currency.countryName !==  "Global"
@@ -37,41 +39,15 @@ let tradCurrSorted = traditionalCurrenciesRates.sort(function (a, b) {
 
 let twentyfiveElements = tradCurrSorted.slice(0, 25);
 
+let objectData = twentyfiveElements;
+
 export default function Home() {
-
-
   return (
     <Container>
-      {/* <h1 className="main-heading">the 25 most valuable currencies in the world</h1> */}
-      <h2 className="main-heading">API INFO: DATE AND TIME: {latestRates.date} BASE: {latestRates.base}</h2>
-      <Table className="table table-success" striped bordered hover>
-          <caption>the 25 most valuable currencies in the world</caption>
-          <thead>
-            <tr>
-              <th>RANK</th>
-              <th>CURRENCY NAME</th>
-              <th>COUNTRY</th>
-              <th>CODE</th>
-              <th>RATE</th>
-            </tr>
-          </thead>
-          <tbody>
-            {twentyfiveElements.map((element, index) => {
-              return (
-                <tr key={index + 1}>
-                <td>{index + 1}</td>
-                <td>{element.currencyName}</td>
-                <td>
-                  <img className="flagIcon roundedCircle" src={element.icon} alt={element.icon} /> 
-                  {element.countryName}
-                </td>
-                <td>{element.currencyCode}</td>
-                <td>{element.rate}</td>
-              </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+        <CurrenciesTable 
+          objectData={objectData}
+          date={latestRates.date} 
+          time={latestRates.time} />
     </Container>
   );
   
