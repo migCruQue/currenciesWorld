@@ -5,6 +5,7 @@ import "./home.scss";
 import { supportedCurrencies, latestRates } from "../../config/dataTesting";
 //COMPONENTS
 import CurrenciesTable from "../Home/CurrenciesTable/CurrenciesTable";
+import InfoAPI from "./InfoAPI/InfoAPI";
 
 
 // ARRAY OF OBJECTS WITH TRADITIONAL CURRENCIES currency.countryName !==  "Global"
@@ -44,10 +45,12 @@ let objectData = twentyfiveElements;
 export default function Home() {
   return (
     <Container>
+        <InfoAPI 
+          date={latestRates.date}
+        />
         <CurrenciesTable 
-          objectData={objectData}
-          date={latestRates.date} 
-          time={latestRates.time} />
+          objectData={objectData} 
+        />
     </Container>
   );
   
