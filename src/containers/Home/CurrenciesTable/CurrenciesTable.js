@@ -18,7 +18,7 @@ export default function CurrenciesTable(props) {
       </tr>
     </thead>
     <tbody>
-          {props.objectData.map((element, index) => {
+          {props.tableData.map((element, index) => {
         return (
           <tr key={index + 1}>
           <td>{index + 1}</td>
