@@ -12,45 +12,6 @@ import InfoAPI from "./InfoAPI/InfoAPI";
 import axios from "axios";
 
 
-
-
-//OBJECT WITH COUNTRY CODE KEY AND RATE VALUE {{"countrycode": "rate"}, {}..}
-// let rates = latestRates.rates;
-//ARRAY WITH ALL THE KEYS CONTAINS IN THE RATES VARIABLE.
-// let arrayRatesKeys = Object.keys(rates);
-
-
-
-
-// axios.get(url_supported_currencies)
-//   .then(response => {
-//     supportedCurrencies = response.data;
-//     // ARRAY OF OBJECTS WITH TRADITIONAL CURRENCIES currency.countryName !==  "Global"
-//     let traditionalCurrencies = supportedCurrencies.filter(currency => currency.countryName !==  "Global");
-//     let traditionalCurrenciesRates = traditionalCurrencies; // to assign this array to another one to keep the original unchanged.
-//     // ADDING PROPERTY RATES WITH THE VALUE TO THE OBJECTS IN THE TRADITIONALCURRENCIES ARRAY 
-//     traditionalCurrenciesRates.forEach( currency => {
-//       if (arrayRatesKeys.includes(currency.currencyCode)){
-//         let rate = rates[currency.currencyCode];
-//         currency.rate = (Number(rate)% 1 !== 0) ?  Number(rate).toFixed(2) : Number(rate); //value to be expressed in number type and fixed it to 2 decimals.
-//       }
-//     });
-//     // SORTING THE ARRAY OF TRADITIONAL CURRENCIES RATES WITH .sort() methods 
-//       let tradCurrSorted = traditionalCurrenciesRates.sort(function (a, b) {
-//         return b.rate - a.rate;
-//       });
-
-
-//       let twentyfiveElements = tradCurrSorted.slice(0, 25);
-
-//       let objectData = twentyfiveElements;
-//       return objectData;
-//   }, error => {
-//     console.log(error);
-//   });
-
-
-
 export default function Home() {
 
   const [arrayData, setArrayData] = useState(null);
@@ -75,10 +36,10 @@ export default function Home() {
           rates = response.data.rates;
         }
       });
+      
+      let supportedCurrenciesCopy = supportedCurrencies.slice();  // supportedCurrencies remains immutable
 
-      const  arrayRatesKeys = Object.keys(rates);
-      let supportedCurrenciesCopy = supportedCurrencies.slice();
-
+      const  arrayRatesKeys = Object.keys(rates);//
 
       supportedCurrenciesCopy.forEach( currency => {
               if (arrayRatesKeys.includes(currency.currencyCode)){
@@ -110,27 +71,18 @@ export default function Home() {
 
   
 
-  // let traditionalCurrencies = arrayData.filter(currency => currency.countryName !==  "Global");
 
-  // let traditionalCurrenciesSorted = traditionalCurrencies.sort(function (a, b) {
-  //           return b.rate - a.rate;
-  //         });
-
-          // console.log(traditionalCurrencies);        
-
-  // let top25TraditionalCurrencies = traditionalCurrenciesSorted.slice(0, 25);        
-    
-  // console.log("top25TraditionalCurrencies:",  top25TraditionalCurrencies);
   return (
-    
-    <Container>
-        <InfoAPI 
-          date={date}
-        />
-        <CurrenciesTable 
-          tableData={top25TraditionalCurrencies(arrayData)} 
-        />
-    </Container>
+      <Container>
+        {arrayData && date ? 
+        
+        <>
+          <InfoAPI date={date} />
+          <CurrenciesTable tableData={top25TraditionalCurrencies(arrayData)} /> 
+         </> :
+        
+        <h1>There are problems to get the info from the API</h1>}
+      </Container>
   );
   
 }
