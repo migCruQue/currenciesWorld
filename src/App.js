@@ -25,12 +25,12 @@ export default function App() {
       <div>
         <Navbar bg="light" expand="lg">
           <Container>
-            <Navbar.Brand href="#home">Currencies World</Navbar.Brand>
+            <Navbar.Brand>Currencies World</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
                 <Nav.Link href="#home">
-                  <Link to="/">Home</Link>
+                  <Link to="/currenciesWorld">Home</Link>
                 </Nav.Link>
                 <Nav.Link href="#home">
                   <Link to="/converter">Converter</Link>
@@ -44,11 +44,16 @@ export default function App() {
         </Navbar>
 
         <hr />
-        <Routes>
+        {/* <Routes>
           <Route exact path="/" element={<Home/>} />
           <Route path="/converter" element={<Converter/>} />
           <Route path="/finance_news" element={<FinanceNews/>} />
-        </Routes>
+        </Routes> */}
+        <Routes>
+            <Route exact path="/currenciesWorld" element={<Home/>} />
+            <Route path="/converter" element={<Converter/>} />
+            <Route path="/finance_news" element={<FinanceNews/>} />
+          </Routes>
           
       </div>
     </Router>
