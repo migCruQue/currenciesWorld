@@ -1,1 +1,15 @@
-/* No CSS *//*# sourceMappingURL=NavComp.css.map */
+.navbar-nav {
+  width: 70%;
+  margin-left: 5rem;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.logoBrand {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: yellow;
+  margin-right: 0.75rem;
+  border-radius: 25%;
+}
+/*# sourceMappingURL=NavComp.css.map */
