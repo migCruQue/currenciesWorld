@@ -2,6 +2,7 @@ table.table {
   text-align: center;
   table-layout: fixed;
   border: 3px solid purple;
+  margin: 3rem 0 6rem;
 }
 
 thead th:nth-child(1) {
@@ -49,6 +50,7 @@ tbody tr td:nth-child(3) {
 
 /* caption */
 caption {
+  width: 70%;
   padding: 20px;
   font-style: italic;
   font-size: 2rem;
@@ -56,7 +58,7 @@ caption {
   color: white !important;
   background-color: cadetblue;
   margin: 4rem auto;
-  text-align: right;
+  text-align: center !important;
   letter-spacing: 1px;
 }
 
