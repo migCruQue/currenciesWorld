@@ -1,5 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
+import SelectCurrency from './SelectCurrency/SelectCurrency';
 
-export default function Converter() {
-  return <h1>Converter</h1>;
+class Converter extends Component {
+  render() {
+    return (
+      <div>
+          <h1>Converter</h1>
+          <SelectCurrency />
+      </div>
+    );
+  }
 }
+
+export default Converter;

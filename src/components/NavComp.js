@@ -12,7 +12,7 @@ import {
   } from "react-router-dom";
 //Style
 import "./NavComp.scss";
-import Converter from '../containers/Converter/converter';
+import Converter from '../containers/Converter/Converter';
 import FinanceNews from '../containers/FinanceNews/financeNews';
 import Home from '../containers/Home/home';
 //icons
