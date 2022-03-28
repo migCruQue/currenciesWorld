@@ -8,7 +8,7 @@ import { url_supported_currencies, url_latest, key } from "./config/dataTesting"
 //Axios
 import axios from "axios";
 //tabs
-import Converter from './tabs/Converter/Converter2';
+import Converter from './tabs/Converter/Converter';
 import FinanceNews from './tabs/FinanceNews/FinanceNews';
 import Home from './tabs/Home/Home';
 

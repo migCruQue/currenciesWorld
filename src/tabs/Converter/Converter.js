@@ -1,60 +1,112 @@
-import React, { Component } from 'react';
-// import InfoAPI from '../../components/InfoAPI/InfoAPI';
-import SelectCurrency from './SelectCurrency/SelectCurrency';
+import React from 'react';
+import Form from 'react-bootstrap/Form';
+import { selectCurrencies } from "../../config/select8currencies"; 
 
-const currencyADollarRatio = 0.77;
-const currencyBDollarRatio = 0.83;
+export default function Converter2(props) {
 
+    //select inputs state
+    const [selectCurrency, setSelectCurrency] = React.useState({
+        selectCurrencyA: "",
+        selectCurrencyB: "",
+    });
 
-function toCurrencyB(currencyAAmount){
-   return (currencyAAmount / currencyADollarRatio) * currencyBDollarRatio; 
-}
+    //select inputs Current Currency Amount
+    const [currentCurrencyAmount, setCurrentCurrencyAmount] = React.useState({
+        currentCurrency: "A", 
+        amount: "",
+    });   
+    
+    // * API latest rates data//////////////////////////////////////////////////////
+    const latestRates = props.latestRates;
+    
+    let ratesConverter = latestRates.rates; 
 
-function toCurrencyA(currencyBAmount){
-    return (currencyBAmount / currencyBDollarRatio) * currencyADollarRatio; 
- }
+    const currency_A_DollarRatio = ratesConverter[selectCurrency.selectCurrencyA];
 
-function tryConvert(currencyAmount, convert){
-    const input = parseFloat(currencyAmount);
-    if(Number.isNaN(input)){
-        return "";
+    const currency_B_DollarRatio = ratesConverter[selectCurrency.selectCurrencyB];
+    // * ////////////////////////////////////////////////////////////////////////////
+
+    function toCurrencyB(currency_A_Amount){
+        return (currency_A_Amount / currency_B_DollarRatio) * currency_A_DollarRatio; 
+     }
+     
+     function toCurrencyA(currency_B_Amount){
+         return (currency_B_Amount / currency_A_DollarRatio) * currency_B_DollarRatio; 
+      }
+     
+     function tryConvert(currencyAmount, convert){
+         const input = parseFloat(currencyAmount);
+         if(Number.isNaN(input)){
+             return "";     //Return an empty string if the user types a non valid number
+         }
+         const output = convert(input);
+         const rounded = Math.round(output * 1000) / 1000; // rounds the output to the third decimal place.
+         return rounded.toString();
+     
+     }
+  
+    function handleChangeSelect(event){
+        const {name, value} = event.target;
+            setSelectCurrency(prevFormData => {
+            return {
+                ...prevFormData,
+                [name]:  value  
+                 }  
+            });
     }
-    const output = convert(input);
-    const rounded = Math.round(output * 1000) / 1000; // rounds the output to the third decimal place.
-    return rounded.toString();
 
-}
+    function handleInput_A_Change(event){
+        setCurrentCurrencyAmount({currentCurrency: "A", amount: event.target.value});
+    }
 
-class Converter extends Component {
+    function handleInput_B_Change(event){
+        setCurrentCurrencyAmount({currentCurrency: "B", amount: event.target.value});
+    }
 
-  constructor(props) {
-    super(props);
-    this.handleInputAChange = this.handleInputAChange.bind(this);
-    this.handleInputBChange = this.handleInputBChange.bind(this);
-    this.state = {amount: "", currentCurrency: "A"};
-  }
+    const currentCurrency = currentCurrencyAmount.currentCurrency;
+    const moneyAmount = currentCurrencyAmount.amount;
+    const input_A = currentCurrency === "B" ? tryConvert(moneyAmount, toCurrencyB) : moneyAmount;
+    const input_B = currentCurrency === "A" ? tryConvert(moneyAmount, toCurrencyA) : moneyAmount;
 
-  handleInputAChange(amount){
-    this.setState({currentCurrency: "A", amount});
-  }
-
-  handleInputBChange(amount){
-    this.setState({currentCurrency: "B", amount});
-  }
-
-  render() {
-    const currentCurrency = this.state.currentCurrency;
-    const amount = this.state.amount;
-    const inputA = currentCurrency === "B" ? tryConvert(amount, toCurrencyB) : amount;
-    const inputB = currentCurrency === "A" ? tryConvert(amount, toCurrencyA) : amount;
     return (
-      <div>
-          <h1>Converter</h1>
-          <SelectCurrency position="A" amount={inputA} onInputChange={this.handleInputAChange} />
-          <SelectCurrency position="B" amount={inputB} onInputChange={this.handleInputBChange}/>
-      </div>
-    );
-  }
-}
+        <Form>
+            <Form.Group className="mb-3" controlid="ControlInput">
+                <Form.Label controlid="selectCurrencyA">Currency A</Form.Label> 
+                <Form.Select
+                    id="selectCurrencyA" 
+                    aria-label="Default select example"
+                    name="selectCurrencyA"
+                    onChange={handleChangeSelect}
+                    value={selectCurrency.selectCurrencyA}
+                >   
+                    <option>Select the currency to convert from</option>
+                    {selectCurrencies.map(element => {
+                            return (<option key={element.currencyCode} value={element.currencyCode}>
+                                    {element.currencyName}
+                                    </option>);
+                    })}
+                </Form.Select>
+                <Form.Control type="number" placeholder="Amount of Money Currency A"  onChange={handleInput_A_Change} name="amountInputA" value={input_A} />
+            </Form.Group>
 
-export default Converter;
+            <Form.Group className="mb-3" controlid="ControlInput">
+                <Form.Label controlid="selectCurrencyB">Currency B</Form.Label> 
+                <Form.Select
+                    id="selectCurrencyB"
+                    aria-label="Default select example"
+                    name="selectCurrencyB"
+                    onChange={handleChangeSelect}
+                    value={selectCurrency.selectCurrencyB}
+                >   
+                    <option>Select the currency to convert from</option>
+                    {selectCurrencies.map(element => {
+                            return (<option key={element.currencyCode} value={element.currencyCode}>
+                                    {element.currencyName}
+                                    </option>);
+                    })}
+                </Form.Select>
+                <Form.Control type="number" placeholder="Amount of Money Currency B"  onChange={handleInput_B_Change} name="amountInputB" value={input_B} />
+            </Form.Group>
+        </Form>
+  )
+}
