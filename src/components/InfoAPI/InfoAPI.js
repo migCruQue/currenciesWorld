@@ -12,7 +12,6 @@ export default function InfoAPI(props) {
   
   const date = props.date;
   const dateStrings = date.split(" ");
-  console.log(`date ${dateStrings[0]}, time ${dateStrings[1]}`);
   return (
     <Card className="API-details">
       <Card.Body className="text-center">

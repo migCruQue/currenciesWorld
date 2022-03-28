@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import InfoAPI from '../../components/InfoAPI/InfoAPI';
 import SelectCurrency from './SelectCurrency/SelectCurrency';
 
 const currencyADollarRatio = 0.77;

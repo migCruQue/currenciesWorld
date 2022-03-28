@@ -7,7 +7,7 @@ import "./CurrenciesTable.scss";
 export default function CurrenciesTable(props) {
   return (
   <Table className="table table-success" striped bordered hover>
-      <caption>the 25 most valuable currencies in the world</caption>  
+      <caption>the 10 most valuable currencies in the world</caption>  
     <thead>
       <tr>
         <th>RANK</th>
